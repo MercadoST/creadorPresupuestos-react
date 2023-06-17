@@ -12,11 +12,7 @@ const pool = mysql.createPool(
 
 
 // Mostrar productos que pertenecen a cierta categoria
-async function obtenerDatos(sql){
+export async function obtenerDatos(sql){
     const [rows] = await pool.query(sql);
     return rows;
 }
-
-//obtenerDatos(sql);
-
-export {obtenerDatos};

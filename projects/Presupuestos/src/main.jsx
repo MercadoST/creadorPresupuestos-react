@@ -14,7 +14,6 @@ root.render(
     <div className='tabcontent p-2'>
       <Table />
     </div>
-
   </section>
 
 );
