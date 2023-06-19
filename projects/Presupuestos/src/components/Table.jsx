@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { Categories } from './Categories';
-import { VirtualMachines } from './VirtualMachines';
+import { VirtualMachine } from './VirtualMachine';
+
 
 export function Table() {
-    return (
-        <div className='bg-light container-fluid rounded'>
-            <Categories/>
-            <VirtualMachines/>
-        </div>
-    )
+
+
+
+  return (
+    <table className='bg-light container-fluid rounded'>
+      <Categories />
+      <VirtualMachine/>
+      <div>
+        <button>Agregar</button>
+      </div>
+    </table>
+  )
 }
