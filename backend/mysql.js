@@ -22,9 +22,8 @@ app.get("/", (req, res) => {
   res.json('Este es el backend')
 })
 
-app.get('/products/:id_categoria', (req, res) => {
-  const id_categoria = req.params.id_categoria;
-  const q = `SELECT * FROM products WHERE id_Category = ${id_categoria}`;
+app.get('/products/', (req, res) => {
+  const q = `SELECT * FROM products`;
   db.query(q, (err, data) => {
     if (err) return res.json(err)
     return res.json(data)

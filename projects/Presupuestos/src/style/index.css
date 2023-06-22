@@ -2,6 +2,10 @@ body{
   background-color: #041C32!important;
 }
  
+span{
+  color: white;
+}
+
  /* Header */
  .header{
   padding: 2px 4px;
