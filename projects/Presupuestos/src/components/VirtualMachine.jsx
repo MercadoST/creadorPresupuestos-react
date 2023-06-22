@@ -11,7 +11,6 @@ export function VirtualMachine({ vm }) {
       const reqData = await fetch(`http://localhost:8800/products/`)
       const resData = await reqData.json()
       setProducts(resData)
-      console.log(resData)
     };
     fetchAllProducts();
   }, []);
