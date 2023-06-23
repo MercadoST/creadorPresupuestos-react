@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import deleteIcon from "../resources/bote-de-basura.png";
 
-export function VirtualMachine({ vm }) {
+export function VirtualMachine({vm}) {
   const [products, setProducts] = useState([]);
   const [display, setDisplay] = useState(true);
 
