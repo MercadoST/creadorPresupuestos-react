@@ -27,12 +27,12 @@ export function ModalNotas({ displayNote, handleNota, note}) {
         ></textarea>
         <div className="text-center">
           <button
-            className="btn btn-outline-success w-25"
+            className="btn btn-outline-success w-25 m-3"
             onClick={() => handleNota(nota)}
           >
             Guardar
           </button>
-          <button className="btn btn-outline-danger w-25" onClick={handleClose}>
+          <button className="btn btn-outline-danger w-25 m-3" onClick={handleClose}>
             Cancelar
           </button>
         </div>

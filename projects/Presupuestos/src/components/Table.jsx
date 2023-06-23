@@ -32,15 +32,15 @@ export function Table() {
       <div>{displayNote &&
         <ModalNotas displayNote={handleDisplayNote} handleNota={handleNota} note={note}/>
       }
-        <table className="bg-light container-fluid rounded">
+        <table className="">
           <Categories />
           {components}
         </table>
-        <button className="btn btn-primary center m-3 " onClick={handleClick}>
+        <button className="btn btn-primary btn-outline-secondary text-white center m-3 " onClick={handleClick}>
           Agregar VM
         </button>
         <button
-          className="btn btn-warning center m-3"
+          className="btn btn-warning center m-3 btn-outline-secondary text-white"
           onClick={handleDisplayNote}
         >
           Agregar nota
