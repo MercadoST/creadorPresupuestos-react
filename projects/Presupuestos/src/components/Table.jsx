@@ -16,37 +16,13 @@ export function Table() {
 
 
   return (
-    <table className='bg-light container-fluid rounded'>
+    <div>
+      <table className='bg-light container-fluid rounded'>
       <Categories />
       {components}
-      <div>
-        <button className='btn btn-primary center m-3 ' onClick={handleClick}>Agregar</button>
-      </div>
     </table>
+    <button className='btn btn-primary center m-3 ' onClick={handleClick}>Agregar</button>
+    </div>
+    
   );
 }
-
-
-  /*
-  const [virtualMachines, setVirtualMachines] = useState([]);
-
-  function agregarVirtualMachine(infoVirtualMachine) {
-    const index = virtualMachines.length + 1;
-    const newVirtualMachine = { ...infoVirtualMachine, index };
-    setVirtualMachines([...virtualMachines, newVirtualMachine]);
-  }
-
-  return (
-    <table className='bg-light container-fluid rounded'>
-      <Categories />
-      <VirtualMachine key={1} vm={1} virtualMachine={1} />
-      {virtualMachines.length === 1 && <VirtualMachine vm={1} />}
-      {virtualMachines.map((virtualMachine, index = 0) => (
-        <VirtualMachine key={index} vm={index} virtualMachine={virtualMachine} />
-      ))}
-      <div>
-        <button className='btn btn-primary center m-3 ' onClick={() => agregarVirtualMachine({})}>Agregar</button>
-      </div>
-    </table>
-  );
-}*/

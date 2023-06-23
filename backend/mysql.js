@@ -27,6 +27,7 @@ app.get('/products/', (req, res) => {
   db.query(q, (err, data) => {
     if (err) return res.json(err)
     return res.json(data)
+    
   })
 })
 
