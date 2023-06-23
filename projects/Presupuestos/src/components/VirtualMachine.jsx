@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import deleteIcon from "../resources/bote-de-basura.png";
 
 export function VirtualMachine({ vm }) {
   const [products, setProducts] = useState([]);
   const [display, setDisplay] = useState(true);
+  const [index, setIndex] = useState(vm)
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -20,7 +20,10 @@ export function VirtualMachine({ vm }) {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       setDisplay(false);
     };
+    setIndex(index)
   }
+
+
 
   if (!display) {
     return null;
@@ -28,7 +31,7 @@ export function VirtualMachine({ vm }) {
     return (
       <tbody>
         <tr>
-          <th className="text-center">{`VM ${vm}`}</th>
+          <th className="text-center">{`VM ${index}`}</th>
           {categorias.map((categoria) => (
             <th key={categoria}>
               <select className="form-select">
@@ -56,7 +59,7 @@ export function VirtualMachine({ vm }) {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-trash"
+                className="bi bi-trash"
                 viewBox="0 0 16 16"
               >
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
