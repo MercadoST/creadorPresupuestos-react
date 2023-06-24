@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function VirtualMachine({ vm }) {
+export function VirtualMachine({ vm, handleDelete }) {
   const [products, setProducts] = useState([]);
   const [display, setDisplay] = useState(true);
   const [index, setIndex] = useState(vm)
@@ -16,13 +16,16 @@ export function VirtualMachine({ vm }) {
 
   const categorias = Array.from({ length: 14 }, (_, i) => i + 1);
 
-  const handleDelete = () => {
+  /*const handleDelete = () => {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       setDisplay(false);
     };
     setIndex(index)
-  }
+  }*/
 
+  const deleteClick = () => {
+    handleDelete(vm)
+  }
 
 
   if (!display) {
@@ -51,7 +54,7 @@ export function VirtualMachine({ vm }) {
           ))}
           <td className="text">
             <button
-              onClick={handleDelete}
+              onClick={deleteClick}
               className="btn btn-outline-danger btn-1 text-dark"
             >
               <svg
