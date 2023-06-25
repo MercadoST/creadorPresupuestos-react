@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { VirtualMachine } from "./VirtualMachine.jsx";
 import { Categories } from "./Categories.jsx";
 import { ModalNotas } from "./ModalNotas.jsx";
@@ -6,21 +6,20 @@ import { ModalNotas } from "./ModalNotas.jsx";
 export function Table() {
   const [displayNote, setDisplayNote] = useState(false);
   const [note, setNote] = useState("");
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
+  const [components, setComponents] = useState([]);
 
+  useEffect(() => {
+    handleAdd();
+  }, []);
 
   const handleAdd = () => {
-    const newComponents = [...components];
     setCount(count + 1);
     const newComponent = (
-      <VirtualMachine handleDelete={handleDelete} key={count + 1} vm={components.length + 1} />
+      <VirtualMachine handleDelete={handleDelete} key={count + 1} id={count + 1} vm={components.length} />
     );
-    newComponents.push(newComponent);
-    setComponents(reorderComponents(newComponents));
-  };
-
-  const reorderComponents = (components) => {
-    return components.sort((a, b) => a.vm - b.vm);
+    setComponents([...components, newComponent]);
+    
   };
 
   const handleDisplayNote = (state) => setDisplayNote(state === false ? false : true);
@@ -30,15 +29,9 @@ export function Table() {
     setDisplayNote(false)
   };
 
-  const handleDelete = (vm) => {
-    const newComponents = components.filter((component) => component.vm !== vm);
-    setComponents(reorderComponents(newComponents));
+  const handleDelete = (num) => {
+    setComponents(prevComponents => prevComponents.filter((component) => component.props.id !== num ));
   };
-
-  const [components, setComponents] = useState(
-    new Array(count).fill().map((_, i) => (
-      <VirtualMachine handleDelete={handleDelete} key={i + 1} vm={i + 1} />
-    )));
 
   return (
     <div>{displayNote &&
@@ -46,7 +39,9 @@ export function Table() {
     }
       <table className="">
         <Categories />
-        {components}
+        <tbody>
+          {components}
+        </tbody>
       </table>
       <button className="btn btn-primary btn-outline-secondary text-white center m-3 " onClick={handleAdd}>
         Agregar VM
