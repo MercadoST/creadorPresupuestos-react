@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { vmContext } from "../context/vmContext.js";
 
 export function VirtualMachine({ vm, id, handleDelete }) {
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(vm)
+  const { getPositionById } = useContext(vmContext)
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -18,6 +20,14 @@ export function VirtualMachine({ vm, id, handleDelete }) {
   const deleteClick = () => {
     handleDelete(id)
   }
+
+  const actPosition = () => {
+    setIndex(getPositionById(id))
+  }
+
+  useEffect(()=> {
+    actPosition()
+  },[deleteClick])
 
   return (
     <tr>

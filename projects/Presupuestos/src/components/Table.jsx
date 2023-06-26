@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
-import { VirtualMachine } from "./VirtualMachine.jsx";
+import { useState, useEffect, useContext } from "react";
 import { Categories } from "./Categories.jsx";
 import { ModalNotas } from "./ModalNotas.jsx";
+import { vmContext } from "../context/vmContext.js";
 
 export function Table() {
   const [displayNote, setDisplayNote] = useState(false);
   const [note, setNote] = useState("");
   const [count, setCount] = useState(0);
-  const [components, setComponents] = useState([]);
+  const { listaVM, addVM } = useContext(vmContext)
+
 
   useEffect(() => {
     handleAdd();
@@ -15,11 +16,7 @@ export function Table() {
 
   const handleAdd = () => {
     setCount(count + 1);
-    const newComponent = (
-      <VirtualMachine handleDelete={handleDelete} key={count + 1} id={count + 1} vm={components.length} />
-    );
-    setComponents([...components, newComponent]);
-    
+    addVM(count + 1)
   };
 
   const handleDisplayNote = (state) => setDisplayNote(state === false ? false : true);
@@ -29,10 +26,6 @@ export function Table() {
     setDisplayNote(false)
   };
 
-  const handleDelete = (num) => {
-    setComponents(prevComponents => prevComponents.filter((component) => component.props.id !== num ));
-  };
-
   return (
     <div>{displayNote &&
       <ModalNotas displayNote={handleDisplayNote} handleNota={handleNota} note={note} />
@@ -40,7 +33,7 @@ export function Table() {
       <table className="">
         <Categories />
         <tbody>
-          {components}
+          {listaVM}
         </tbody>
       </table>
       <button className="btn btn-primary btn-outline-secondary text-white center m-3 " onClick={handleAdd}>
