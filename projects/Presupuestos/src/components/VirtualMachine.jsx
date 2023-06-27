@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useContext } from "react";
 import { vmContext } from "../context/vmContext.js";
 
 export function VirtualMachine({ vm, id }) {
@@ -21,7 +21,7 @@ export function VirtualMachine({ vm, id }) {
   const deleteClick = () => {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       deleteVM(id);
-    }
+    }else event.preventDefault()
   };
 
   const actPosition = () => {
