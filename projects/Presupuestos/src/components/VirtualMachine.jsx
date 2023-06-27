@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { vmContext } from "../context/vmContext.js";
 
 export function VirtualMachine({ vm, id }) {
@@ -6,6 +6,7 @@ export function VirtualMachine({ vm, id }) {
   const [index, setIndex] = useState(vm);
   const { getPositionById, deleteVM } = useContext(vmContext);
 
+  /*Obtener productos*/
   useEffect(() => {
     const fetchAllProducts = async () => {
       const reqData = await fetch(`http://localhost:8800/products/`);
@@ -20,8 +21,7 @@ export function VirtualMachine({ vm, id }) {
   const deleteClick = () => {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       deleteVM(id);
-    };
-    
+    }
   };
 
   const actPosition = () => {
@@ -52,8 +52,8 @@ export function VirtualMachine({ vm, id }) {
   }, [deleteClick]);
 
   return (
-    <tr>
-      <th className="text-center">{`VM ${index + 1}`}</th>
+    <tr className="col">
+      <th className="text-center col-md-1">{`VM ${index + 1}`}</th>
       {productos()}
       <td className="text">
         <button

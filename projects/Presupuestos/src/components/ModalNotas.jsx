@@ -14,13 +14,13 @@ export function ModalNotas({ displayNote, handleNota, note}) {
 
   return (
     <div id="modal" className="modal" style={{display: 'block'}}>
-      <div className="modal-content w-50 h-50">
-        <div className="modal-header">
+      <div className="modal-content w-50 h-auto">
+        <div className="pb-3">
           <h4 className="modal-title">Dejar nota</h4>
         </div>
         <textarea
           id="textoNota"
-          className="textoNota form-control h-75"
+          className="textoNota form-control h-auto"
           placeholder="Aquí puedes realizar el pedido de características más especifícas para tus virtual machines."
           value={nota}
           onChange={handleInputChange}
