@@ -30,7 +30,7 @@ export function Table() {
     <div>{displayNote &&
       <ModalNotas displayNote={handleDisplayNote} handleNota={handleNota} note={note} />
     }
-      <table>
+      <table className='tabcontent p-2 bg-light container-fluid rounded'>
         <Categories />
         <tbody>
           {listaVM}

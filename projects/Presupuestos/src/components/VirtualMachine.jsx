@@ -18,7 +18,10 @@ export function VirtualMachine({ vm, id }) {
   const categorias = Array.from({ length: 14 }, (_, i) => i + 1);
 
   const deleteClick = () => {
-    deleteVM(id);
+    if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
+      deleteVM(id);
+    };
+    
   };
 
   const actPosition = () => {
