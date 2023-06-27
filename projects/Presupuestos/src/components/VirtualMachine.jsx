@@ -18,6 +18,7 @@ export function VirtualMachine({ vm, id }) {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       deleteVM(id);
     }
+    
   };
 
   const actPosition = () => {
