@@ -6,14 +6,10 @@ export function VirtualMachine({ vm, id }) {
   const [index, setIndex] = useState(vm);
   const { getPositionById, deleteVM } = useContext(vmContext);
 
-  /*Obtener productos*/
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      const reqData = await fetch(`http://localhost:8800/products/`);
-      const resData = await reqData.json();
-      setProducts(resData);
-    };
-    fetchAllProducts();
+  /*Obtener productos desde el localStorage*/
+   useEffect(() => {
+    const json = localStorage.getItem('products');
+    setProducts(JSON.parse(json));
   }, []);
 
   const categorias = Array.from({ length: 14 }, (_, i) => i + 1);

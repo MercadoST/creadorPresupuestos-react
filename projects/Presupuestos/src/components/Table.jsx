@@ -4,10 +4,27 @@ import { ModalNotas } from "./ModalNotas.jsx";
 import { vmContext } from "../context/vmContext.js";
 
 export function Table() {
+  const [products, setProducts] = useState([]);
   const [displayNote, setDisplayNote] = useState(false);
   const [note, setNote] = useState("");
   const [count, setCount] = useState(0);
   const { listaVM, addVM } = useContext(vmContext);
+
+  /*Obtener productos y almacenarlos en el localStorage*/
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8800/products/`);
+      const json = await response.json();
+      localStorage.setItem("products", JSON.stringify(json));
+      setProducts(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     handleAdd();
