@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import { vmContext } from "../context/vmContext.js";
 
-export function VirtualMachine({ vm, id, handleDelete }) {
+export function VirtualMachine({ vm, id }) {
   const [products, setProducts] = useState([]);
-  const [index, setIndex] = useState(vm)
-  const { getPositionById } = useContext(vmContext)
+  const [index, setIndex] = useState(vm);
+  const { getPositionById, deleteVM } = useContext(vmContext);
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -18,37 +18,40 @@ export function VirtualMachine({ vm, id, handleDelete }) {
   const categorias = Array.from({ length: 14 }, (_, i) => i + 1);
 
   const deleteClick = () => {
-    handleDelete(id)
-  }
+    deleteVM(id);
+  };
 
   const actPosition = () => {
-    setIndex(getPositionById(id))
-  }
+    setIndex(getPositionById(id));
+  };
 
-  useEffect(()=> {
-    actPosition()
-  },[deleteClick])
+  const productos = () => {
+    return categorias.map((categoria) => (
+      <td key={categoria}>
+        <select className="form-select">
+          {products.map((producto) => {
+            if (producto.id_Category === categoria) {
+              return (
+                <option key={producto.id} value={producto.nombre}>
+                  {producto.nombre}
+                </option>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </select>
+      </td>
+    ));
+  };
+  useEffect(() => {
+    actPosition();
+  }, [deleteClick]);
 
   return (
     <tr>
       <th className="text-center">{`VM ${index + 1}`}</th>
-      {categorias.map((categoria) => (
-        <td key={categoria}>
-          <select className="form-select">
-            {products.map((producto) => {
-              if (producto.id_Category === categoria) {
-                return (
-                  <option key={producto.id} value={producto.nombre}>
-                    {producto.nombre}
-                  </option>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </select>
-        </td>
-      ))}
+      {productos()}
       <td className="text">
         <button
           onClick={deleteClick}
@@ -70,4 +73,3 @@ export function VirtualMachine({ vm, id, handleDelete }) {
     </tr>
   );
 }
-

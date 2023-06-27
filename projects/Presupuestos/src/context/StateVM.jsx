@@ -9,7 +9,7 @@ const StateVM = ({children}) => {
 
   const addVM = (newId) => {
     const newVM = (
-      <VirtualMachine handleDelete={deleteVM} key={newId} id={newId} vm={listaVM.length} />
+      <VirtualMachine key={newId} id={newId} vm={listaVM.length} />
     );
     setListaVM([...listaVM, newVM]);
   }
