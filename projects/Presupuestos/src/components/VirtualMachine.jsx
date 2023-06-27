@@ -1,5 +1,6 @@
-import { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useContext } from "react";
 import { vmContext } from "../context/vmContext.js";
+import { Trash } from "./Icon/Trash.jsx";
 
 export function VirtualMachine({ vm, id }) {
   const [products, setProducts] = useState([]);
@@ -17,8 +18,7 @@ export function VirtualMachine({ vm, id }) {
   const deleteClick = () => {
     if (confirm("¿Estás seguro de que deseas eliminar esta Virtual Machine?")) {
       deleteVM(id);
-    }
-    
+    }else event.preventDefault()
   };
 
   const actPosition = () => {
@@ -28,7 +28,7 @@ export function VirtualMachine({ vm, id }) {
   const productos = () => {
     return categorias.map((categoria) => (
       <td key={categoria}>
-        <select className="form-select">
+        <select className="form-select" name={categoria} >
           {products.map((producto) => {
             if (producto.id_Category === categoria) {
               return (
@@ -49,7 +49,7 @@ export function VirtualMachine({ vm, id }) {
   }, [deleteClick]);
 
   return (
-    <tr className="col">
+    <tr className="col row-vm">
       <th className="text-center col-md-1">{`VM ${index + 1}`}</th>
       {productos()}
       <td className="text">
@@ -57,17 +57,7 @@ export function VirtualMachine({ vm, id }) {
           onClick={deleteClick}
           className="btn btn-outline-danger btn-1 text-dark"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-trash"
-            viewBox="0 0 16 16"
-          >
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-          </svg>
+          <Trash/>
         </button>
       </td>
     </tr>

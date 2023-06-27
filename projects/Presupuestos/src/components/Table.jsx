@@ -38,9 +38,23 @@ export function Table() {
   const handleDisplayNote = (state) =>
     setDisplayNote(state === false ? false : true);
 
-  const handleNota = (text) => {
-    setNote(text);
-    setDisplayNote(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = document.getElementById("virtualMachine");
+    const rows = form.getElementsByClassName("row-vm");
+    const dataForm = Array.from(rows).map((row) => {
+      const cells = row.cells;
+      const rowData = [cells[0].textContent];
+      for (let i = 1; i < cells.length; i++) {
+        const cell = cells[i];
+        if (cell.querySelector("select")) {
+          rowData.push(cell.querySelector("select").value);
+        }
+      }
+      return rowData;
+    });
+    var datosJSON = JSON.stringify(dataForm);
+    localStorage.setItem("dataForm", datosJSON);
   };
 
   return (
@@ -52,7 +66,11 @@ export function Table() {
           note={note}
         />
       )}
-      <form className="form-horizontal" action="">
+      <form
+        className="form-horizontal"
+        id="virtualMachine"
+        onSubmit={handleSubmit}
+      >
         <table className="tabcontent p-2 bg-light container-fluid rounded">
           <Categories />
           <tbody>{listaVM}</tbody>
