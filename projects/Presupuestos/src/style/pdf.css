@@ -1,0 +1,94 @@
+/* article */
+
+#invoicePDF *
+{
+	border: 0;
+	box-sizing: content-box;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	list-style: none;
+	margin: 20;
+	padding: 20;
+	text-decoration: none;
+	vertical-align: top;
+}
+
+/* heading */
+
+#invoicePDF header {
+  margin: 0 0 3em;
+}
+
+#invoicePDF h1 {
+  font: bold 100% sans-serif;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#invoicePDF header h1 {
+  background: black;
+  border-radius: 0.25em;
+  color: white;
+  margin: 0 0 1em;
+  padding: 0.5em 0;
+}
+
+#invoicePDF header address {
+  float: left;
+  font-size: 75%;
+  font-style: normal;
+  line-height: 1.25;
+  margin: 0 1em 1em 0;
+}
+
+#invoicePDF address p {
+  margin: 0 0 0.25em;
+}
+
+#invoicePDF header span, header img { display: block; float: right; }
+#invoicePDF header span { margin: 0 0 1em 1em; max-height: 25%; max-width: 60%; position: relative; }
+#invoicePDF header img { max-height: 50%; max-width: 50%; }
+
+#invoicePDF header:after { clear: both; content: ""; display: table; }
+
+#invoicePDF article, article address, table { margin: 0 0 3em; }
+#invoicePDF article h1 { clip: rect(0 0 0 0); position: absolute; }
+#invoicePDF article address { float: left; font-size: 125%; font-weight: bold; }
+
+#invoicePDF article:after { clear: both; content: ""; display: table; }
+
+/* table */
+
+#invoicePDF table { font-size: 75%; table-layout: auto; width: 100%; }
+#invoicePDF table { border-collapse: separate; border-spacing: 2px; }
+#invoicePDF th, td { border-width: 1px; padding: 1em; position: relative; text-align: left; }
+#invoicePDF th, td { border-radius: 0.25em; border-style: solid; }
+#invoicePDF th { background: #EEE; border-color: #BBB; }
+#invoicePDF td { border-color: #DDD; }
+
+/* table firstTable */
+
+#invoicePDF table.firstTable { float: right; width: 36%; height: 50%;}
+#invoicePDF table.firstTable:after { clear: both; content: ""; display: table; }
+
+/* table firstTable */
+#invoicePDF table.firstTable th { width: 40px; }
+#invoicePDF table.firstTable td { width: 60%; }
+
+#invoicePDF form { font: 16px/1 'Open Sans', sans-serif; overflow: auto; padding: 0.5in; }
+#invoicePDF form { background: #999; cursor: default; }
+
+#invoicePDF form { box-sizing: border-box; height: 11in; margin: 0 auto; overflow: hidden; padding: 0.5in; width: 8.5in; }
+#invoicePDF form { background: #FFF; border-radius: 1px; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); }
+
+#invoicePDF aside h1#notes { border: none; border-width: 0 0 1px; margin: 0 0 1em; }
+#invoicePDF aside h1#notes { border-color: #999; border-bottom-style: solid; border-bottom-width: 10%; font: bold 100% sans-serif;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
